@@ -1,0 +1,36 @@
+{
+  "fleet": 6,
+  "payload_t": 25,
+  "shift_min": 450,
+  "cost_per_truck_hour": 150,
+  "replications": 30,
+  "seed": 2026,
+  "variability": 0.15,
+  "baseline": [
+    3,
+    3
+  ],
+  "minimum_tonnes": [
+    500,
+    500
+  ],
+  "ramp_crossing_min": 2,
+  "routes": [
+    {
+      "name": "A",
+      "load_min": 6,
+      "loaded_min": 12,
+      "dump_min": 3,
+      "empty_min": 9,
+      "enabled": true
+    },
+    {
+      "name": "B",
+      "load_min": 8,
+      "loaded_min": 18,
+      "dump_min": 3,
+      "empty_min": 13,
+      "enabled": true
+    }
+  ]
+}
