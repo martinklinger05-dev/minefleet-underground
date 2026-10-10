@@ -1,5 +1,5 @@
 # MineFleet — Underground Haulage Optimization
-
+[![Tests](https://github.com/martinklinger05-dev/minefleet-underground/actions/workflows/tests.yml/badge.svg)](https://github.com/martinklinger05-dev/minefleet-underground/actions/workflows/tests.yml)
 Proyecto de portafolio de Martin Klinger Castillo · Ingeniería de Minas.
 
 Simulador en Python de acarreo subterráneo y selección exhaustiva de asignaciones estáticas de volquetes. **Todos los datos y resultados incluidos son simulados.** Primera versión funcional; no es un sistema de despacho operacional ni una tesis validada.
