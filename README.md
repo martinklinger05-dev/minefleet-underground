@@ -94,3 +94,27 @@ Este paquete no está publicado todavía. La automatización incluida se ejecuta
 «El proyecto representa la competencia de los volquetes por carguío, rampa y descarga con eventos discretos. Evalúa cada distribución y selecciona la de mayor producción media que cumple las metas por frente. Con datos simulados, pasar de 3/3 a 4/2 incrementó 5.39% la producción media. El resultado depende de los supuestos y requiere calibración antes de aplicarlo en campo».
 
 Proyecto desarrollado con asistencia de IA. Para presentarlo como evidencia de competencias propias, revisa y ejecuta el código y asegúrate de poder explicar el modelo, sus supuestos y sus límites.
+
+## Sensibilidad al tiempo de cruce de rampa
+
+Se comparó el escenario original con otro en el que `ramp_crossing_min` aumenta de 2 a 3 minutos. Los demás parámetros se mantienen iguales: seis volquetes, 30 réplicas por asignación, semilla 2026 y metas medias de 500 t por frente.
+
+| Indicador | Rampa de 2 min | Rampa de 3 min |
+|---|---:|---:|
+| Producción media con A=3, B=3 (t/guardia) | 1793,33 | 1722,50 |
+| Producción media con A=4, B=2 (t/guardia) | 1890,00 | 1780,83 |
+| Asignación seleccionada A/B | 4/2 | 3/3 |
+
+Con la asignación fija 3/3, la producción media disminuye un 3,95 %. En el escenario de rampa lenta, la asignación 4/2 produce más toneladas totales que 3/3, pero el frente B alcanza solo 485 t medias y no cumple su meta de 500 t. Por ello, el modelo selecciona 3/3.
+
+La comparación muestra que la selección de flota depende tanto de la producción total como de las metas de cada frente. Son resultados simulados; el cumplimiento de las metas medias no garantiza su cumplimiento en cada guardia.
+
+### Reproducir el escenario
+
+```bash
+python minefleet.py --scenario data/scenario_rampa_lenta.json --out results_rampa_lenta
+```
+
+[Ver panel de rampa lenta](https://martinklinger05-dev.github.io/minefleet-underground/results_rampa_lenta/dashboard.html)
+
+[Consultar resultados completos](results_rampa_lenta/summary.json)
