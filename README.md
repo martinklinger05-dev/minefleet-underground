@@ -118,3 +118,29 @@ python minefleet.py --scenario data/scenario_rampa_lenta.json --out results_ramp
 [Ver panel de rampa lenta](https://martinklinger05-dev.github.io/minefleet-underground/results_rampa_lenta/dashboard.html)
 
 [Consultar resultados completos](results_rampa_lenta/summary.json)
+
+## Comparación automática de ocupación de rampa
+
+Se evaluaron cinco tiempos de ocupación de rampa, de 1 a 5 minutos, con 30 réplicas por distribución y semilla 2026.
+
+![Producción media según ocupación de rampa](results_sensitivity/production.svg)
+
+| Ocupación por cruce | Selección A/B | Producción media (t/guardia) |
+|---|---|---:|
+| 1 min | 4/2 | 1912,50 |
+| 2 min | 4/2 | 1890,00 |
+| 3 min | 3/3 | 1722,50 |
+| 4 min | 3/3 | 1396,67 |
+| 5 min | Ninguna cumple ambas metas medias | — |
+
+El tiempo total de viaje permanece fijo: aumenta la ocupación del recurso compartido y cambian las esperas. Los puntos verdes representan la distribución seleccionada entre las que cumplen las metas medias de ambos frentes.
+
+Todos los datos son simulados. Cumplir las metas medias no garantiza cumplirlas en cada guardia.
+
+### Reproducir el análisis
+
+```bash
+python sensitivity.py
+```
+
+[Ver panel de sensibilidad](https://martinklinger05-dev.github.io/minefleet-underground/results_sensitivity/dashboard.html)
