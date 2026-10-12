@@ -1,0 +1,846 @@
+{
+  "data_type": "SIMULATED",
+  "scenario": {
+    "fleet": 6,
+    "payload_t": 25,
+    "shift_min": 450,
+    "cost_per_truck_hour": 150,
+    "replications": 30,
+    "seed": 2026,
+    "variability": 0.15,
+    "baseline": [
+      3,
+      3
+    ],
+    "minimum_tonnes": [
+      500,
+      500
+    ],
+    "ramp_crossing_min": 2,
+    "routes": [
+      {
+        "name": "A",
+        "load_min": 6,
+        "loaded_min": 12,
+        "dump_min": 3,
+        "empty_min": 9,
+        "enabled": true
+      },
+      {
+        "name": "B",
+        "load_min": 8,
+        "loaded_min": 18,
+        "dump_min": 3,
+        "empty_min": 13,
+        "enabled": true
+      }
+    ]
+  },
+  "interpretation": "Total travel durations stay fixed; ramp occupancy changes.",
+  "scenarios": [
+    {
+      "ramp_min": 1,
+      "report": {
+        "baseline": {
+          "allocation": [
+            3,
+            3
+          ],
+          "mean_tonnes": 1816.6666666666667,
+          "sd_tonnes": 16.522363806281668,
+          "min_tonnes": 1800.0,
+          "max_tonnes": 1850.0,
+          "route_mean_tonnes": [
+            1064.1666666666667,
+            752.5
+          ],
+          "mean_wait_min": 110.87888525771517,
+          "cost_per_t": 3.715596330275229,
+          "feasible": true
+        },
+        "best": {
+          "allocation": [
+            4,
+            2
+          ],
+          "mean_tonnes": 1912.5,
+          "sd_tonnes": 14.308786786808476,
+          "min_tonnes": 1900.0,
+          "max_tonnes": 1950.0,
+          "route_mean_tonnes": [
+            1410.0,
+            502.5
+          ],
+          "mean_wait_min": 112.96861593662607,
+          "cost_per_t": 3.5294117647058822,
+          "feasible": true
+        },
+        "candidates": [
+          {
+            "allocation": [
+              0,
+              6
+            ],
+            "mean_tonnes": 1328.3333333333333,
+            "sd_tonnes": 14.283661593084146,
+            "min_tonnes": 1300.0,
+            "max_tonnes": 1350.0,
+            "route_mean_tonnes": [
+              0.0,
+              1328.3333333333333
+            ],
+            "mean_wait_min": 429.6314573464157,
+            "cost_per_t": 5.081555834378921,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              1,
+              5
+            ],
+            "mean_tonnes": 1592.5,
+            "sd_tonnes": 13.374577015548102,
+            "min_tonnes": 1575.0,
+            "max_tonnes": 1625.0,
+            "route_mean_tonnes": [
+              360.0,
+              1232.5
+            ],
+            "mean_wait_min": 157.26520389198413,
+            "cost_per_t": 4.23861852433281,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              2,
+              4
+            ],
+            "mean_tonnes": 1710.0,
+            "sd_tonnes": 14.08104619937615,
+            "min_tonnes": 1675.0,
+            "max_tonnes": 1725.0,
+            "route_mean_tonnes": [
+              709.1666666666666,
+              1000.8333333333334
+            ],
+            "mean_wait_min": 124.35564938446073,
+            "cost_per_t": 3.9473684210526314,
+            "feasible": true
+          },
+          {
+            "allocation": [
+              3,
+              3
+            ],
+            "mean_tonnes": 1816.6666666666667,
+            "sd_tonnes": 16.522363806281668,
+            "min_tonnes": 1800.0,
+            "max_tonnes": 1850.0,
+            "route_mean_tonnes": [
+              1064.1666666666667,
+              752.5
+            ],
+            "mean_wait_min": 110.87888525771517,
+            "cost_per_t": 3.715596330275229,
+            "feasible": true
+          },
+          {
+            "allocation": [
+              4,
+              2
+            ],
+            "mean_tonnes": 1912.5,
+            "sd_tonnes": 14.308786786808476,
+            "min_tonnes": 1900.0,
+            "max_tonnes": 1950.0,
+            "route_mean_tonnes": [
+              1410.0,
+              502.5
+            ],
+            "mean_wait_min": 112.96861593662607,
+            "cost_per_t": 3.5294117647058822,
+            "feasible": true
+          },
+          {
+            "allocation": [
+              5,
+              1
+            ],
+            "mean_tonnes": 1987.5,
+            "sd_tonnes": 12.713690692890195,
+            "min_tonnes": 1975.0,
+            "max_tonnes": 2000.0,
+            "route_mean_tonnes": [
+              1737.5,
+              250.0
+            ],
+            "mean_wait_min": 151.4959547084687,
+            "cost_per_t": 3.3962264150943398,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              6,
+              0
+            ],
+            "mean_tonnes": 1799.1666666666667,
+            "sd_tonnes": 17.95988505710345,
+            "min_tonnes": 1775.0,
+            "max_tonnes": 1825.0,
+            "route_mean_tonnes": [
+              1799.1666666666667,
+              0.0
+            ],
+            "mean_wait_min": 510.61767502659336,
+            "cost_per_t": 3.7517369152385363,
+            "feasible": false
+          }
+        ],
+        "replications": 30,
+        "seed": 2026,
+        "data_type": "SIMULATED",
+        "improvement_pct": 5.275229357798161
+      }
+    },
+    {
+      "ramp_min": 2,
+      "report": {
+        "baseline": {
+          "allocation": [
+            3,
+            3
+          ],
+          "mean_tonnes": 1793.3333333333333,
+          "sd_tonnes": 13.020761494054696,
+          "min_tonnes": 1750.0,
+          "max_tonnes": 1800.0,
+          "route_mean_tonnes": [
+            1045.8333333333333,
+            747.5
+          ],
+          "mean_wait_min": 162.22575614565875,
+          "cost_per_t": 3.7639405204460967,
+          "feasible": true
+        },
+        "best": {
+          "allocation": [
+            4,
+            2
+          ],
+          "mean_tonnes": 1890.0,
+          "sd_tonnes": 14.08104619937615,
+          "min_tonnes": 1850.0,
+          "max_tonnes": 1900.0,
+          "route_mean_tonnes": [
+            1390.0,
+            500.0
+          ],
+          "mean_wait_min": 159.94562175251127,
+          "cost_per_t": 3.5714285714285716,
+          "feasible": true
+        },
+        "candidates": [
+          {
+            "allocation": [
+              0,
+              6
+            ],
+            "mean_tonnes": 1326.6666666666667,
+            "sd_tonnes": 15.992095748737299,
+            "min_tonnes": 1300.0,
+            "max_tonnes": 1350.0,
+            "route_mean_tonnes": [
+              0.0,
+              1326.6666666666667
+            ],
+            "mean_wait_min": 430.9282351777194,
+            "cost_per_t": 5.087939698492462,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              1,
+              5
+            ],
+            "mean_tonnes": 1569.1666666666667,
+            "sd_tonnes": 15.651557889482314,
+            "min_tonnes": 1550.0,
+            "max_tonnes": 1600.0,
+            "route_mean_tonnes": [
+              351.6666666666667,
+              1217.5
+            ],
+            "mean_wait_min": 180.93696237212725,
+            "cost_per_t": 4.301646309081253,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              2,
+              4
+            ],
+            "mean_tonnes": 1689.1666666666667,
+            "sd_tonnes": 12.600173324843272,
+            "min_tonnes": 1675.0,
+            "max_tonnes": 1700.0,
+            "route_mean_tonnes": [
+              701.6666666666666,
+              987.5
+            ],
+            "mean_wait_min": 158.76217723020935,
+            "cost_per_t": 3.9960532807104094,
+            "feasible": true
+          },
+          {
+            "allocation": [
+              3,
+              3
+            ],
+            "mean_tonnes": 1793.3333333333333,
+            "sd_tonnes": 13.020761494054696,
+            "min_tonnes": 1750.0,
+            "max_tonnes": 1800.0,
+            "route_mean_tonnes": [
+              1045.8333333333333,
+              747.5
+            ],
+            "mean_wait_min": 162.22575614565875,
+            "cost_per_t": 3.7639405204460967,
+            "feasible": true
+          },
+          {
+            "allocation": [
+              4,
+              2
+            ],
+            "mean_tonnes": 1890.0,
+            "sd_tonnes": 14.08104619937615,
+            "min_tonnes": 1850.0,
+            "max_tonnes": 1900.0,
+            "route_mean_tonnes": [
+              1390.0,
+              500.0
+            ],
+            "mean_wait_min": 159.94562175251127,
+            "cost_per_t": 3.5714285714285716,
+            "feasible": true
+          },
+          {
+            "allocation": [
+              5,
+              1
+            ],
+            "mean_tonnes": 1975.0,
+            "sd_tonnes": 13.130643285972255,
+            "min_tonnes": 1950.0,
+            "max_tonnes": 2000.0,
+            "route_mean_tonnes": [
+              1725.0,
+              250.0
+            ],
+            "mean_wait_min": 177.47993408054637,
+            "cost_per_t": 3.4177215189873418,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              6,
+              0
+            ],
+            "mean_tonnes": 1799.1666666666667,
+            "sd_tonnes": 17.95988505710345,
+            "min_tonnes": 1775.0,
+            "max_tonnes": 1825.0,
+            "route_mean_tonnes": [
+              1799.1666666666667,
+              0.0
+            ],
+            "mean_wait_min": 510.7130564101545,
+            "cost_per_t": 3.7517369152385363,
+            "feasible": false
+          }
+        ],
+        "replications": 30,
+        "seed": 2026,
+        "data_type": "SIMULATED",
+        "improvement_pct": 5.390334572490718
+      }
+    },
+    {
+      "ramp_min": 3,
+      "report": {
+        "baseline": {
+          "allocation": [
+            3,
+            3
+          ],
+          "mean_tonnes": 1722.5,
+          "sd_tonnes": 24.870353490825593,
+          "min_tonnes": 1675.0,
+          "max_tonnes": 1775.0,
+          "route_mean_tonnes": [
+            1000.0,
+            722.5
+          ],
+          "mean_wait_min": 251.1577171070754,
+          "cost_per_t": 3.918722786647315,
+          "feasible": true
+        },
+        "best": {
+          "allocation": [
+            3,
+            3
+          ],
+          "mean_tonnes": 1722.5,
+          "sd_tonnes": 24.870353490825593,
+          "min_tonnes": 1675.0,
+          "max_tonnes": 1775.0,
+          "route_mean_tonnes": [
+            1000.0,
+            722.5
+          ],
+          "mean_wait_min": 251.1577171070754,
+          "cost_per_t": 3.918722786647315,
+          "feasible": true
+        },
+        "candidates": [
+          {
+            "allocation": [
+              0,
+              6
+            ],
+            "mean_tonnes": 1320.0,
+            "sd_tonnes": 13.771534860493695,
+            "min_tonnes": 1300.0,
+            "max_tonnes": 1350.0,
+            "route_mean_tonnes": [
+              0.0,
+              1320.0
+            ],
+            "mean_wait_min": 437.445059465689,
+            "cost_per_t": 5.113636363636363,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              1,
+              5
+            ],
+            "mean_tonnes": 1534.1666666666667,
+            "sd_tonnes": 15.373697496459453,
+            "min_tonnes": 1500.0,
+            "max_tonnes": 1550.0,
+            "route_mean_tonnes": [
+              339.1666666666667,
+              1195.0
+            ],
+            "mean_wait_min": 245.811971730983,
+            "cost_per_t": 4.399782726778924,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              2,
+              4
+            ],
+            "mean_tonnes": 1601.6666666666667,
+            "sd_tonnes": 13.020761494054696,
+            "min_tonnes": 1575.0,
+            "max_tonnes": 1625.0,
+            "route_mean_tonnes": [
+              661.6666666666666,
+              940.0
+            ],
+            "mean_wait_min": 273.22978435509617,
+            "cost_per_t": 4.2143600416233085,
+            "feasible": true
+          },
+          {
+            "allocation": [
+              3,
+              3
+            ],
+            "mean_tonnes": 1722.5,
+            "sd_tonnes": 24.870353490825593,
+            "min_tonnes": 1675.0,
+            "max_tonnes": 1775.0,
+            "route_mean_tonnes": [
+              1000.0,
+              722.5
+            ],
+            "mean_wait_min": 251.1577171070754,
+            "cost_per_t": 3.918722786647315,
+            "feasible": true
+          },
+          {
+            "allocation": [
+              4,
+              2
+            ],
+            "mean_tonnes": 1780.8333333333333,
+            "sd_tonnes": 15.651557889482314,
+            "min_tonnes": 1750.0,
+            "max_tonnes": 1800.0,
+            "route_mean_tonnes": [
+              1295.8333333333333,
+              485.0
+            ],
+            "mean_wait_min": 300.83627054647525,
+            "cost_per_t": 3.7903603182030885,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              5,
+              1
+            ],
+            "mean_tonnes": 1790.8333333333333,
+            "sd_tonnes": 12.253312946339024,
+            "min_tonnes": 1775.0,
+            "max_tonnes": 1800.0,
+            "route_mean_tonnes": [
+              1548.3333333333333,
+              242.5
+            ],
+            "mean_wait_min": 405.0199018585913,
+            "cost_per_t": 3.769194974406701,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              6,
+              0
+            ],
+            "mean_tonnes": 1775.0,
+            "sd_tonnes": 11.37147065368355,
+            "min_tonnes": 1750.0,
+            "max_tonnes": 1800.0,
+            "route_mean_tonnes": [
+              1775.0,
+              0.0
+            ],
+            "mean_wait_min": 540.0411652452545,
+            "cost_per_t": 3.8028169014084505,
+            "feasible": false
+          }
+        ],
+        "replications": 30,
+        "seed": 2026,
+        "data_type": "SIMULATED",
+        "improvement_pct": 0.0
+      }
+    },
+    {
+      "ramp_min": 4,
+      "report": {
+        "baseline": {
+          "allocation": [
+            3,
+            3
+          ],
+          "mean_tonnes": 1396.6666666666667,
+          "sd_tonnes": 8.64364759104401,
+          "min_tonnes": 1375.0,
+          "max_tonnes": 1400.0,
+          "route_mean_tonnes": [
+            796.6666666666666,
+            600.0
+          ],
+          "mean_wait_min": 738.2032480933153,
+          "cost_per_t": 4.832935560859188,
+          "feasible": true
+        },
+        "best": {
+          "allocation": [
+            3,
+            3
+          ],
+          "mean_tonnes": 1396.6666666666667,
+          "sd_tonnes": 8.64364759104401,
+          "min_tonnes": 1375.0,
+          "max_tonnes": 1400.0,
+          "route_mean_tonnes": [
+            796.6666666666666,
+            600.0
+          ],
+          "mean_wait_min": 738.2032480933153,
+          "cost_per_t": 4.832935560859188,
+          "feasible": true
+        },
+        "candidates": [
+          {
+            "allocation": [
+              0,
+              6
+            ],
+            "mean_tonnes": 1295.0,
+            "sd_tonnes": 12.105854952787558,
+            "min_tonnes": 1275.0,
+            "max_tonnes": 1325.0,
+            "route_mean_tonnes": [
+              0.0,
+              1295.0
+            ],
+            "mean_wait_min": 490.8236055276366,
+            "cost_per_t": 5.212355212355212,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              1,
+              5
+            ],
+            "mean_tonnes": 1354.1666666666667,
+            "sd_tonnes": 9.476225544736293,
+            "min_tonnes": 1350.0,
+            "max_tonnes": 1375.0,
+            "route_mean_tonnes": [
+              285.0,
+              1069.1666666666667
+            ],
+            "mean_wait_min": 528.935516267578,
+            "cost_per_t": 4.984615384615385,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              2,
+              4
+            ],
+            "mean_tonnes": 1360.0,
+            "sd_tonnes": 12.456821978060995,
+            "min_tonnes": 1350.0,
+            "max_tonnes": 1375.0,
+            "route_mean_tonnes": [
+              555.8333333333334,
+              804.1666666666666
+            ],
+            "mean_wait_min": 632.1573540158349,
+            "cost_per_t": 4.963235294117647,
+            "feasible": true
+          },
+          {
+            "allocation": [
+              3,
+              3
+            ],
+            "mean_tonnes": 1396.6666666666667,
+            "sd_tonnes": 8.64364759104401,
+            "min_tonnes": 1375.0,
+            "max_tonnes": 1400.0,
+            "route_mean_tonnes": [
+              796.6666666666666,
+              600.0
+            ],
+            "mean_wait_min": 738.2032480933153,
+            "cost_per_t": 4.832935560859188,
+            "feasible": true
+          },
+          {
+            "allocation": [
+              4,
+              2
+            ],
+            "mean_tonnes": 1398.3333333333333,
+            "sd_tonnes": 6.342703292561561,
+            "min_tonnes": 1375.0,
+            "max_tonnes": 1400.0,
+            "route_mean_tonnes": [
+              998.3333333333334,
+              400.0
+            ],
+            "mean_wait_min": 830.5648099890697,
+            "cost_per_t": 4.827175208581645,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              5,
+              1
+            ],
+            "mean_tonnes": 1376.6666666666667,
+            "sd_tonnes": 6.342703292561561,
+            "min_tonnes": 1375.0,
+            "max_tonnes": 1400.0,
+            "route_mean_tonnes": [
+              1176.6666666666667,
+              200.0
+            ],
+            "mean_wait_min": 923.6440177198493,
+            "cost_per_t": 4.903147699757869,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              6,
+              0
+            ],
+            "mean_tonnes": 1372.5,
+            "sd_tonnes": 7.628214415734117,
+            "min_tonnes": 1350.0,
+            "max_tonnes": 1375.0,
+            "route_mean_tonnes": [
+              1372.5,
+              0.0
+            ],
+            "mean_wait_min": 1034.0018250909636,
+            "cost_per_t": 4.918032786885246,
+            "feasible": false
+          }
+        ],
+        "replications": 30,
+        "seed": 2026,
+        "data_type": "SIMULATED",
+        "improvement_pct": 0.0
+      }
+    },
+    {
+      "ramp_min": 5,
+      "report": {
+        "baseline": {
+          "allocation": [
+            3,
+            3
+          ],
+          "mean_tonnes": 1087.5,
+          "sd_tonnes": 12.713690692890195,
+          "min_tonnes": 1075.0,
+          "max_tonnes": 1100.0,
+          "route_mean_tonnes": [
+            605.0,
+            482.5
+          ],
+          "mean_wait_min": 1114.9703862147605,
+          "cost_per_t": 6.206896551724138,
+          "feasible": false
+        },
+        "best": null,
+        "candidates": [
+          {
+            "allocation": [
+              0,
+              6
+            ],
+            "mean_tonnes": 1081.6666666666667,
+            "sd_tonnes": 11.24441112772009,
+            "min_tonnes": 1075.0,
+            "max_tonnes": 1100.0,
+            "route_mean_tonnes": [
+              0.0,
+              1081.6666666666667
+            ],
+            "mean_wait_min": 855.2571043768588,
+            "cost_per_t": 6.240369799691833,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              1,
+              5
+            ],
+            "mean_tonnes": 1100.8333333333333,
+            "sd_tonnes": 4.564354645876384,
+            "min_tonnes": 1100.0,
+            "max_tonnes": 1125.0,
+            "route_mean_tonnes": [
+              225.83333333333334,
+              875.0
+            ],
+            "mean_wait_min": 933.0416012129883,
+            "cost_per_t": 6.131718395155186,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              2,
+              4
+            ],
+            "mean_tonnes": 1122.5,
+            "sd_tonnes": 12.016511628760567,
+            "min_tonnes": 1100.0,
+            "max_tonnes": 1150.0,
+            "route_mean_tonnes": [
+              446.6666666666667,
+              675.8333333333334
+            ],
+            "mean_wait_min": 1029.94386650773,
+            "cost_per_t": 6.013363028953229,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              3,
+              3
+            ],
+            "mean_tonnes": 1087.5,
+            "sd_tonnes": 12.713690692890195,
+            "min_tonnes": 1075.0,
+            "max_tonnes": 1100.0,
+            "route_mean_tonnes": [
+              605.0,
+              482.5
+            ],
+            "mean_wait_min": 1114.9703862147605,
+            "cost_per_t": 6.206896551724138,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              4,
+              2
+            ],
+            "mean_tonnes": 1119.1666666666667,
+            "sd_tonnes": 10.754576678801909,
+            "min_tonnes": 1100.0,
+            "max_tonnes": 1125.0,
+            "route_mean_tonnes": [
+              789.1666666666666,
+              330.0
+            ],
+            "mean_wait_min": 1190.924337319061,
+            "cost_per_t": 6.031273268801191,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              5,
+              1
+            ],
+            "mean_tonnes": 1120.8333333333333,
+            "sd_tonnes": 9.476225544736293,
+            "min_tonnes": 1100.0,
+            "max_tonnes": 1125.0,
+            "route_mean_tonnes": [
+              949.1666666666666,
+              171.66666666666666
+            ],
+            "mean_wait_min": 1266.6738368851427,
+            "cost_per_t": 6.022304832713755,
+            "feasible": false
+          },
+          {
+            "allocation": [
+              6,
+              0
+            ],
+            "mean_tonnes": 1125.0,
+            "sd_tonnes": 0.0,
+            "min_tonnes": 1125.0,
+            "max_tonnes": 1125.0,
+            "route_mean_tonnes": [
+              1125.0,
+              0.0
+            ],
+            "mean_wait_min": 1352.147119268372,
+            "cost_per_t": 6.0,
+            "feasible": false
+          }
+        ],
+        "replications": 30,
+        "seed": 2026,
+        "data_type": "SIMULATED",
+        "improvement_pct": null
+      }
+    }
+  ]
+}
