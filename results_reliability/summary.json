@@ -1,0 +1,430 @@
+{
+  "data_type": "SIMULATED",
+  "scenario": {
+    "fleet": 6,
+    "payload_t": 25,
+    "shift_min": 450,
+    "cost_per_truck_hour": 150,
+    "replications": 30,
+    "seed": 2026,
+    "variability": 0.15,
+    "baseline": [
+      3,
+      3
+    ],
+    "minimum_tonnes": [
+      500,
+      500
+    ],
+    "ramp_crossing_min": 2,
+    "routes": [
+      {
+        "name": "A",
+        "load_min": 6,
+        "loaded_min": 12,
+        "dump_min": 3,
+        "empty_min": 9,
+        "enabled": true
+      },
+      {
+        "name": "B",
+        "load_min": 8,
+        "loaded_min": 18,
+        "dump_min": 3,
+        "empty_min": 13,
+        "enabled": true
+      }
+    ]
+  },
+  "analysis_replications": 1000,
+  "scenarios": [
+    {
+      "ramp_min": 2,
+      "candidates": [
+        {
+          "allocation": [
+            0,
+            6
+          ],
+          "replications": 1000,
+          "mean_tonnes": 1327.225,
+          "route_mean_tonnes": [
+            0.0,
+            1327.225
+          ],
+          "mean_targets_met": false,
+          "front_success_counts": [
+            0,
+            1000
+          ],
+          "front_success_rates": [
+            0.0,
+            1.0
+          ],
+          "joint_success_count": 0,
+          "joint_success_rate": 0.0,
+          "joint_wilson_95": [
+            2.168404344971009e-19,
+            0.0038267584855551234
+          ]
+        },
+        {
+          "allocation": [
+            1,
+            5
+          ],
+          "replications": 1000,
+          "mean_tonnes": 1574.1,
+          "route_mean_tonnes": [
+            352.625,
+            1221.475
+          ],
+          "mean_targets_met": false,
+          "front_success_counts": [
+            0,
+            1000
+          ],
+          "front_success_rates": [
+            0.0,
+            1.0
+          ],
+          "joint_success_count": 0,
+          "joint_success_rate": 0.0,
+          "joint_wilson_95": [
+            2.168404344971009e-19,
+            0.0038267584855551234
+          ]
+        },
+        {
+          "allocation": [
+            2,
+            4
+          ],
+          "replications": 1000,
+          "mean_tonnes": 1687.8,
+          "route_mean_tonnes": [
+            702.3,
+            985.5
+          ],
+          "mean_targets_met": true,
+          "front_success_counts": [
+            1000,
+            1000
+          ],
+          "front_success_rates": [
+            1.0,
+            1.0
+          ],
+          "joint_success_count": 1000,
+          "joint_success_rate": 1.0,
+          "joint_wilson_95": [
+            0.996173241514445,
+            1
+          ]
+        },
+        {
+          "allocation": [
+            3,
+            3
+          ],
+          "replications": 1000,
+          "mean_tonnes": 1796.1,
+          "route_mean_tonnes": [
+            1048.45,
+            747.65
+          ],
+          "mean_targets_met": true,
+          "front_success_counts": [
+            1000,
+            1000
+          ],
+          "front_success_rates": [
+            1.0,
+            1.0
+          ],
+          "joint_success_count": 1000,
+          "joint_success_rate": 1.0,
+          "joint_wilson_95": [
+            0.996173241514445,
+            1
+          ]
+        },
+        {
+          "allocation": [
+            4,
+            2
+          ],
+          "replications": 1000,
+          "mean_tonnes": 1889.65,
+          "route_mean_tonnes": [
+            1389.75,
+            499.9
+          ],
+          "mean_targets_met": false,
+          "front_success_counts": [
+            1000,
+            996
+          ],
+          "front_success_rates": [
+            1.0,
+            0.996
+          ],
+          "joint_success_count": 996,
+          "joint_success_rate": 0.996,
+          "joint_wilson_95": [
+            0.9897604437227377,
+            0.9984434118595916
+          ]
+        },
+        {
+          "allocation": [
+            5,
+            1
+          ],
+          "replications": 1000,
+          "mean_tonnes": 1970.1,
+          "route_mean_tonnes": [
+            1720.1,
+            250.0
+          ],
+          "mean_targets_met": false,
+          "front_success_counts": [
+            1000,
+            0
+          ],
+          "front_success_rates": [
+            1.0,
+            0.0
+          ],
+          "joint_success_count": 0,
+          "joint_success_rate": 0.0,
+          "joint_wilson_95": [
+            2.168404344971009e-19,
+            0.0038267584855551234
+          ]
+        },
+        {
+          "allocation": [
+            6,
+            0
+          ],
+          "replications": 1000,
+          "mean_tonnes": 1799.4,
+          "route_mean_tonnes": [
+            1799.4,
+            0.0
+          ],
+          "mean_targets_met": false,
+          "front_success_counts": [
+            1000,
+            0
+          ],
+          "front_success_rates": [
+            1.0,
+            0.0
+          ],
+          "joint_success_count": 0,
+          "joint_success_rate": 0.0,
+          "joint_wilson_95": [
+            2.168404344971009e-19,
+            0.0038267584855551234
+          ]
+        }
+      ]
+    },
+    {
+      "ramp_min": 3,
+      "candidates": [
+        {
+          "allocation": [
+            0,
+            6
+          ],
+          "replications": 1000,
+          "mean_tonnes": 1322.475,
+          "route_mean_tonnes": [
+            0.0,
+            1322.475
+          ],
+          "mean_targets_met": false,
+          "front_success_counts": [
+            0,
+            1000
+          ],
+          "front_success_rates": [
+            0.0,
+            1.0
+          ],
+          "joint_success_count": 0,
+          "joint_success_rate": 0.0,
+          "joint_wilson_95": [
+            2.168404344971009e-19,
+            0.0038267584855551234
+          ]
+        },
+        {
+          "allocation": [
+            1,
+            5
+          ],
+          "replications": 1000,
+          "mean_tonnes": 1536.35,
+          "route_mean_tonnes": [
+            342.625,
+            1193.725
+          ],
+          "mean_targets_met": false,
+          "front_success_counts": [
+            0,
+            1000
+          ],
+          "front_success_rates": [
+            0.0,
+            1.0
+          ],
+          "joint_success_count": 0,
+          "joint_success_rate": 0.0,
+          "joint_wilson_95": [
+            2.168404344971009e-19,
+            0.0038267584855551234
+          ]
+        },
+        {
+          "allocation": [
+            2,
+            4
+          ],
+          "replications": 1000,
+          "mean_tonnes": 1605.425,
+          "route_mean_tonnes": [
+            666.375,
+            939.05
+          ],
+          "mean_targets_met": true,
+          "front_success_counts": [
+            1000,
+            1000
+          ],
+          "front_success_rates": [
+            1.0,
+            1.0
+          ],
+          "joint_success_count": 1000,
+          "joint_success_rate": 1.0,
+          "joint_wilson_95": [
+            0.996173241514445,
+            1
+          ]
+        },
+        {
+          "allocation": [
+            3,
+            3
+          ],
+          "replications": 1000,
+          "mean_tonnes": 1719.4,
+          "route_mean_tonnes": [
+            995.35,
+            724.05
+          ],
+          "mean_targets_met": true,
+          "front_success_counts": [
+            1000,
+            1000
+          ],
+          "front_success_rates": [
+            1.0,
+            1.0
+          ],
+          "joint_success_count": 1000,
+          "joint_success_rate": 1.0,
+          "joint_wilson_95": [
+            0.996173241514445,
+            1
+          ]
+        },
+        {
+          "allocation": [
+            4,
+            2
+          ],
+          "replications": 1000,
+          "mean_tonnes": 1781.175,
+          "route_mean_tonnes": [
+            1295.15,
+            486.025
+          ],
+          "mean_targets_met": false,
+          "front_success_counts": [
+            1000,
+            462
+          ],
+          "front_success_rates": [
+            1.0,
+            0.462
+          ],
+          "joint_success_count": 462,
+          "joint_success_rate": 0.462,
+          "joint_wilson_95": [
+            0.43130413072430196,
+            0.4929867029206003
+          ]
+        },
+        {
+          "allocation": [
+            5,
+            1
+          ],
+          "replications": 1000,
+          "mean_tonnes": 1791.225,
+          "route_mean_tonnes": [
+            1547.725,
+            243.5
+          ],
+          "mean_targets_met": false,
+          "front_success_counts": [
+            1000,
+            0
+          ],
+          "front_success_rates": [
+            1.0,
+            0.0
+          ],
+          "joint_success_count": 0,
+          "joint_success_rate": 0.0,
+          "joint_wilson_95": [
+            2.168404344971009e-19,
+            0.0038267584855551234
+          ]
+        },
+        {
+          "allocation": [
+            6,
+            0
+          ],
+          "replications": 1000,
+          "mean_tonnes": 1776.725,
+          "route_mean_tonnes": [
+            1776.725,
+            0.0
+          ],
+          "mean_targets_met": false,
+          "front_success_counts": [
+            1000,
+            0
+          ],
+          "front_success_rates": [
+            1.0,
+            0.0
+          ],
+          "joint_success_count": 0,
+          "joint_success_rate": 0.0,
+          "joint_wilson_95": [
+            2.168404344971009e-19,
+            0.0038267584855551234
+          ]
+        }
+      ]
+    }
+  ]
+}
