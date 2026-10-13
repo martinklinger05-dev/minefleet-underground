@@ -144,3 +144,28 @@ python sensitivity.py
 ```
 
 [Ver panel de sensibilidad](https://martinklinger05-dev.github.io/minefleet-underground/results_sensitivity/dashboard.html)
+
+## Cumplimiento de metas por guardia
+
+Se simularon 1000 guardias por distribución y escenario, con metas de 500 t por frente y semilla inicial 2026.
+
+| Rampa | Distribución A/B | Producción media (t/guardia) | Guardias con ambas metas |
+|---|---|---:|---:|
+| 2 min | 3/3 | 1796,10 | 1000/1000 |
+| 2 min | 4/2 | 1889,65 | 996/1000 |
+| 3 min | 3/3 | 1719,40 | 1000/1000 |
+| 3 min | 4/2 | 1781,17 | 462/1000 |
+
+Con rampa de 2 minutos, la distribución 4/2 cumple ambas metas en el 99,6 % de las guardias simuladas, pero el frente B promedia 499,90 t y queda ligeramente por debajo de su meta media. Esto muestra que la selección anterior, basada en 30 réplicas, estaba cerca del límite y es sensible al muestreo.
+
+Con rampa de 3 minutos, el cumplimiento conjunto de 4/2 baja al 46,2 %. La distribución 3/3 cumple ambas metas en las 1000 guardias simuladas de cada escenario.
+
+El panel incluye intervalos Wilson del 95 % para las frecuencias conjuntas. Un resultado observado de 1000/1000 no garantiza cumplimiento futuro. Los intervalos cuantifican incertidumbre de muestreo bajo el modelo, no su validez operacional.
+
+### Reproducir el análisis
+
+```bash
+python reliability.py
+```
+
+[Ver panel de cumplimiento por guardia](https://martinklinger05-dev.github.io/minefleet-underground/results_reliability/dashboard.html)
