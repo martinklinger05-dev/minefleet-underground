@@ -1,0 +1,558 @@
+{
+  "data_type": "SIMULATED",
+  "threshold": 0.95,
+  "model_version": 1,
+  "ramp_side": null,
+  "criteria": {
+    "mean": "Metas medias: la media de cada frente alcanza su meta",
+    "frequency": "Frecuencia: proporción observada de guardias con ambas metas ≥ umbral",
+    "wilson": "Wilson: límite inferior del IC 95 % de esa proporción ≥ umbral"
+  },
+  "selection_batch": {
+    "replications": 1000,
+    "seed_range": [
+      2026,
+      3025
+    ],
+    "use": "Solo para elegir la asignación"
+  },
+  "validation_batch": {
+    "replications": 1000,
+    "seed_range": [
+      1000000,
+      1000999
+    ],
+    "use": "Solo para evaluar la asignación ya elegida"
+  },
+  "scenario": {
+    "model_version": 1,
+    "fleet": 6,
+    "payload_t": 25,
+    "shift_min": 450,
+    "cost_per_truck_hour": 150,
+    "replications": 30,
+    "seed": 2026,
+    "variability": 0.15,
+    "baseline": [
+      3,
+      3
+    ],
+    "minimum_tonnes": [
+      500,
+      500
+    ],
+    "ramp_crossing_min": 2,
+    "routes": [
+      {
+        "name": "A",
+        "load_min": 6,
+        "loaded_min": 12,
+        "dump_min": 3,
+        "empty_min": 9,
+        "enabled": true
+      },
+      {
+        "name": "B",
+        "load_min": 8,
+        "loaded_min": 18,
+        "dump_min": 3,
+        "empty_min": 13,
+        "enabled": true
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "ramp_min": 2,
+      "criteria": {
+        "mean": {
+          "selected": {
+            "allocation": [
+              3,
+              3
+            ],
+            "mean_tonnes": 1796.1,
+            "route_mean_tonnes": [
+              1048.45,
+              747.65
+            ],
+            "mean_targets_met": true,
+            "joint_success_count": 1000,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.996173241514445,
+              1.0
+            ]
+          },
+          "reselected_on_validation": {
+            "allocation": [
+              3,
+              3
+            ],
+            "mean_tonnes": 1797.0,
+            "route_mean_tonnes": [
+              1049.3,
+              747.7
+            ],
+            "mean_targets_met": true,
+            "joint_success_count": 1000,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.996173241514445,
+              1.0
+            ]
+          },
+          "stable": true,
+          "validation": {
+            "mean_tonnes": 1797.0,
+            "mean_ci95": [
+              1796.3003147425738,
+              1797.6996852574262
+            ],
+            "route_mean_tonnes": [
+              1049.3,
+              747.7
+            ],
+            "route_mean_ci95": [
+              [
+                1048.7458180609026,
+                1049.8541819390973
+              ],
+              [
+                747.2419668370321,
+                748.158033162968
+              ]
+            ],
+            "mean_targets_met": true,
+            "joint_success_count": 1000,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.996173241514445,
+              1.0
+            ],
+            "still_eligible": true
+          }
+        },
+        "frequency": {
+          "selected": {
+            "allocation": [
+              4,
+              2
+            ],
+            "mean_tonnes": 1889.65,
+            "route_mean_tonnes": [
+              1389.75,
+              499.9
+            ],
+            "mean_targets_met": false,
+            "joint_success_count": 996,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.9897604437227377,
+              0.9984434118595916
+            ]
+          },
+          "reselected_on_validation": {
+            "allocation": [
+              4,
+              2
+            ],
+            "mean_tonnes": 1889.125,
+            "route_mean_tonnes": [
+              1389.275,
+              499.85
+            ],
+            "mean_targets_met": false,
+            "joint_success_count": 994,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.9869718317581478,
+              0.9972473308581237
+            ]
+          },
+          "stable": true,
+          "validation": {
+            "mean_tonnes": 1889.125,
+            "mean_ci95": [
+              1888.2703927526065,
+              1889.9796072473935
+            ],
+            "route_mean_tonnes": [
+              1389.275,
+              499.85
+            ],
+            "route_mean_ci95": [
+              [
+                1388.4302302528645,
+                1390.1197697471357
+              ],
+              [
+                499.7290540661332,
+                499.97094593386686
+              ]
+            ],
+            "mean_targets_met": false,
+            "joint_success_count": 994,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.9869718317581478,
+              0.9972473308581237
+            ],
+            "still_eligible": true
+          }
+        },
+        "wilson": {
+          "selected": {
+            "allocation": [
+              4,
+              2
+            ],
+            "mean_tonnes": 1889.65,
+            "route_mean_tonnes": [
+              1389.75,
+              499.9
+            ],
+            "mean_targets_met": false,
+            "joint_success_count": 996,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.9897604437227377,
+              0.9984434118595916
+            ]
+          },
+          "reselected_on_validation": {
+            "allocation": [
+              4,
+              2
+            ],
+            "mean_tonnes": 1889.125,
+            "route_mean_tonnes": [
+              1389.275,
+              499.85
+            ],
+            "mean_targets_met": false,
+            "joint_success_count": 994,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.9869718317581478,
+              0.9972473308581237
+            ]
+          },
+          "stable": true,
+          "validation": {
+            "mean_tonnes": 1889.125,
+            "mean_ci95": [
+              1888.2703927526065,
+              1889.9796072473935
+            ],
+            "route_mean_tonnes": [
+              1389.275,
+              499.85
+            ],
+            "route_mean_ci95": [
+              [
+                1388.4302302528645,
+                1390.1197697471357
+              ],
+              [
+                499.7290540661332,
+                499.97094593386686
+              ]
+            ],
+            "mean_targets_met": false,
+            "joint_success_count": 994,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.9869718317581478,
+              0.9972473308581237
+            ],
+            "still_eligible": true
+          }
+        }
+      },
+      "near_target": [
+        {
+          "front": 1,
+          "target": 500,
+          "mean": 499.9,
+          "below": 0.004,
+          "at": 0.996,
+          "above": 0.0,
+          "distribution": {
+            "475": 4,
+            "500": 996
+          },
+          "phase": "selection",
+          "allocation": [
+            4,
+            2
+          ]
+        },
+        {
+          "front": 1,
+          "target": 500,
+          "mean": 499.85,
+          "below": 0.006,
+          "at": 0.994,
+          "above": 0.0,
+          "distribution": {
+            "475": 6,
+            "500": 994
+          },
+          "phase": "validation",
+          "allocation": [
+            4,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "ramp_min": 3,
+      "criteria": {
+        "mean": {
+          "selected": {
+            "allocation": [
+              3,
+              3
+            ],
+            "mean_tonnes": 1719.4,
+            "route_mean_tonnes": [
+              995.35,
+              724.05
+            ],
+            "mean_targets_met": true,
+            "joint_success_count": 1000,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.996173241514445,
+              1.0
+            ]
+          },
+          "reselected_on_validation": {
+            "allocation": [
+              3,
+              3
+            ],
+            "mean_tonnes": 1720.175,
+            "route_mean_tonnes": [
+              996.7,
+              723.475
+            ],
+            "mean_targets_met": true,
+            "joint_success_count": 1000,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.996173241514445,
+              1.0
+            ]
+          },
+          "stable": true,
+          "validation": {
+            "mean_tonnes": 1720.175,
+            "mean_ci95": [
+              1718.8705595250442,
+              1721.4794404749557
+            ],
+            "route_mean_tonnes": [
+              996.7,
+              723.475
+            ],
+            "route_mean_ci95": [
+              [
+                995.4662705189418,
+                997.9337294810583
+              ],
+              [
+                722.58179639363,
+                724.36820360637
+              ]
+            ],
+            "mean_targets_met": true,
+            "joint_success_count": 1000,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.996173241514445,
+              1.0
+            ],
+            "still_eligible": true
+          }
+        },
+        "frequency": {
+          "selected": {
+            "allocation": [
+              3,
+              3
+            ],
+            "mean_tonnes": 1719.4,
+            "route_mean_tonnes": [
+              995.35,
+              724.05
+            ],
+            "mean_targets_met": true,
+            "joint_success_count": 1000,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.996173241514445,
+              1.0
+            ]
+          },
+          "reselected_on_validation": {
+            "allocation": [
+              3,
+              3
+            ],
+            "mean_tonnes": 1720.175,
+            "route_mean_tonnes": [
+              996.7,
+              723.475
+            ],
+            "mean_targets_met": true,
+            "joint_success_count": 1000,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.996173241514445,
+              1.0
+            ]
+          },
+          "stable": true,
+          "validation": {
+            "mean_tonnes": 1720.175,
+            "mean_ci95": [
+              1718.8705595250442,
+              1721.4794404749557
+            ],
+            "route_mean_tonnes": [
+              996.7,
+              723.475
+            ],
+            "route_mean_ci95": [
+              [
+                995.4662705189418,
+                997.9337294810583
+              ],
+              [
+                722.58179639363,
+                724.36820360637
+              ]
+            ],
+            "mean_targets_met": true,
+            "joint_success_count": 1000,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.996173241514445,
+              1.0
+            ],
+            "still_eligible": true
+          }
+        },
+        "wilson": {
+          "selected": {
+            "allocation": [
+              3,
+              3
+            ],
+            "mean_tonnes": 1719.4,
+            "route_mean_tonnes": [
+              995.35,
+              724.05
+            ],
+            "mean_targets_met": true,
+            "joint_success_count": 1000,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.996173241514445,
+              1.0
+            ]
+          },
+          "reselected_on_validation": {
+            "allocation": [
+              3,
+              3
+            ],
+            "mean_tonnes": 1720.175,
+            "route_mean_tonnes": [
+              996.7,
+              723.475
+            ],
+            "mean_targets_met": true,
+            "joint_success_count": 1000,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.996173241514445,
+              1.0
+            ]
+          },
+          "stable": true,
+          "validation": {
+            "mean_tonnes": 1720.175,
+            "mean_ci95": [
+              1718.8705595250442,
+              1721.4794404749557
+            ],
+            "route_mean_tonnes": [
+              996.7,
+              723.475
+            ],
+            "route_mean_ci95": [
+              [
+                995.4662705189418,
+                997.9337294810583
+              ],
+              [
+                722.58179639363,
+                724.36820360637
+              ]
+            ],
+            "mean_targets_met": true,
+            "joint_success_count": 1000,
+            "replications": 1000,
+            "joint_wilson_95": [
+              0.996173241514445,
+              1.0
+            ],
+            "still_eligible": true
+          }
+        }
+      },
+      "near_target": [
+        {
+          "front": 1,
+          "target": 500,
+          "mean": 486.025,
+          "below": 0.538,
+          "at": 0.462,
+          "above": 0.0,
+          "distribution": {
+            "450": 21,
+            "475": 517,
+            "500": 462
+          },
+          "phase": "selection",
+          "allocation": [
+            4,
+            2
+          ]
+        },
+        {
+          "front": 1,
+          "target": 500,
+          "mean": 486.2,
+          "below": 0.533,
+          "at": 0.467,
+          "above": 0.0,
+          "distribution": {
+            "450": 19,
+            "475": 514,
+            "500": 467
+          },
+          "phase": "validation",
+          "allocation": [
+            4,
+            2
+          ]
+        }
+      ]
+    }
+  ]
+}

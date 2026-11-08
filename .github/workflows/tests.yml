@@ -13,12 +13,19 @@ jobs:
         python-version: ['3.10', '3.12', '3.13']
 
     steps:
-      - uses: actions/checkout@v4
+      # v6 de ambas acciones usa el runtime Node 24 (elimina la advertencia de Node 20).
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
-      - run: python -m unittest discover -s tests -v
+      - name: Pruebas
+        run: python -m unittest discover -s tests -v
 
-      - run: python minefleet.py
+      - name: Ejecutar simulador y criterios (en carpeta temporal)
+        run: |
+          python minefleet.py --out "$RUNNER_TEMP/results"
+          python reliability.py --replications 50 --out "$RUNNER_TEMP/reliability"
+          python policy.py --input "$RUNNER_TEMP/reliability/summary.json" --out "$RUNNER_TEMP/policy"
+          python validation.py --selection "$RUNNER_TEMP/reliability/summary.json" --replications 50 --out "$RUNNER_TEMP/validation"

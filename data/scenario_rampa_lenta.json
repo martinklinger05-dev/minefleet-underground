@@ -1,4 +1,6 @@
 {
+  "model_version": 2,
+  "ramp_side": "dump",
   "fleet": 6,
   "payload_t": 25,
   "shift_min": 450,
