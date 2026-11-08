@@ -1,0 +1,15 @@
+ramp_min,trucks_A,trucks_B,mean_tonnes,mean_targets_met,joint_success_count,replications,wilson_95_low,wilson_95_high,eligible_mean,selected_mean,eligible_frequency,selected_frequency,eligible_wilson,selected_wilson
+2,0,6,1327.475,False,0,1000,2.168404344971009e-19,0.0038267584855551234,False,False,False,False,False,False
+2,1,5,1574.25,False,0,1000,2.168404344971009e-19,0.0038267584855551234,False,False,False,False,False,False
+2,2,4,1692.55,True,1000,1000,0.996173241514445,1.0,True,False,True,False,True,False
+2,3,3,1795.625,True,1000,1000,0.996173241514445,1.0,True,True,True,True,True,True
+2,4,2,1872.2,False,947,1000,0.9313253831625082,0.9592534947514054,False,False,False,False,False,False
+2,5,1,1909.55,False,0,1000,2.168404344971009e-19,0.0038267584855551234,False,False,False,False,False,False
+2,6,0,1797.9,False,0,1000,2.168404344971009e-19,0.0038267584855551234,False,False,False,False,False,False
+3,0,6,1321.925,False,0,1000,2.168404344971009e-19,0.0038267584855551234,False,False,False,False,False,False
+3,1,5,1494.675,False,0,1000,2.168404344971009e-19,0.0038267584855551234,False,False,False,False,False,False
+3,2,4,1605.525,True,1000,1000,0.996173241514445,1.0,True,False,True,False,True,False
+3,3,3,1663.0,True,1000,1000,0.996173241514445,1.0,True,True,True,True,True,True
+3,4,2,1690.45,False,0,1000,2.168404344971009e-19,0.0038267584855551234,False,False,False,False,False,False
+3,5,1,1700.475,False,0,1000,2.168404344971009e-19,0.0038267584855551234,False,False,False,False,False,False
+3,6,0,1789.15,False,0,1000,2.168404344971009e-19,0.0038267584855551234,False,False,False,False,False,False

@@ -1,169 +1,155 @@
-# MineFleet — Underground Haulage Optimization
+# MineFleet — Asignación de volquetes en acarreo subterráneo
 [![Tests](https://github.com/martinklinger05-dev/minefleet-underground/actions/workflows/tests.yml/badge.svg)](https://github.com/martinklinger05-dev/minefleet-underground/actions/workflows/tests.yml)
 
-**[Ver panel de resultados](https://martinklinger05-dev.github.io/minefleet-underground/results/dashboard.html)** — Resultados del escenario simulado, disponibles sin instalar Python.
+Proyecto de portafolio de Martin Klinger Castillo · Ingeniería de Minas, Universidad Católica de Santa María (Arequipa).
 
-Proyecto de portafolio de Martin Klinger Castillo · Ingeniería de Minas.
+Simulador de eventos discretos en Python (solo biblioteca estándar) que evalúa asignaciones estáticas de volquetes a dos frentes que comparten una rampa y una descarga. **Todos los datos y resultados son simulados.** No es un sistema de despacho, no usa datos de una mina real y sus resultados no están validados operacionalmente.
 
-Simulador en Python de acarreo subterráneo y selección exhaustiva de asignaciones estáticas de volquetes. **Todos los datos y resultados incluidos son simulados.** Primera versión funcional; no es un sistema de despacho operacional ni una tesis validada.
+**Paneles (sin instalar nada):**
+[Resultado principal](https://martinklinger05-dev.github.io/minefleet-underground/results/dashboard.html) ·
+[Rampa lenta](https://martinklinger05-dev.github.io/minefleet-underground/results_rampa_lenta/dashboard.html) ·
+[Sensibilidad](https://martinklinger05-dev.github.io/minefleet-underground/results_sensitivity/dashboard.html) ·
+[Cumplimiento por guardia](https://martinklinger05-dev.github.io/minefleet-underground/results_reliability/dashboard.html) ·
+[Criterios de selección](https://martinklinger05-dev.github.io/minefleet-underground/results_policy/dashboard.html) ·
+[Validación fuera de muestra](https://martinklinger05-dev.github.io/minefleet-underground/results_validation/dashboard.html)
 
-## Resultado reproducible
+> **Versión 2.0.** Una auditoría ([docs/AUDITORIA.md](docs/AUDITORIA.md)) encontró que en el modelo v1 la rampa ocupaba posiciones distintas en el viaje cargado y en el vacío. El modelo v2 corrige eso y **cambia los resultados**: la asignación 4/2 y la mejora de 5,39 % de la release v1.0.0 ya no se obtienen. Los resultados v1 siguen siendo reproducibles (ver [Trazabilidad](#trazabilidad-de-resultados-históricos)). Detalle en [CHANGELOG.md](CHANGELOG.md).
 
-Escenario de seis volquetes, dos frentes y una descarga; 30 réplicas por distribución.
+## Hallazgo principal
 
-| Indicador | Base: A=3, B=3 | Seleccionada: A=4, B=2 |
-|---|---:|---:|
-| Producción media (t/guardia) | 1793.33 | 1890.00 |
-| Desviación estándar (t) | 13.02 | 14.08 |
-| Costo supuesto (S/ por t) | 3.764 | 3.571 |
-| Espera acumulada de la flota (min/guardia) | 162.23 | 159.95 |
+La meta de 500 t del frente B equivale exactamente a 20 viajes de 25 t, y **con 2 volquetes ese frente casi nunca puede hacer más de 20 viajes en la guardia**. La asignación 4/2 deja al frente B trabajando en su techo: cualquier demora lo deja en 475 t. Por eso su elegibilidad cambia con detalles del modelo, el número de réplicas y el criterio:
 
-Incremento de producción simulada: **5.39%**. La asignación 5/1 produce más toneladas totales, pero incumple la meta de 500 t medias del frente B. La selección es la mejor entre las siete asignaciones evaluadas que cumplen ambas metas medias. No garantiza el cumplimiento en cada réplica ni una mejora real en una mina.
+| Experimento | Frente B con 4/2 (media) | Guardias con ambas metas | Selección |
+|---|---:|---:|---|
+| v1, 30 réplicas (release v1.0.0) | 500,0 t | — | 4/2 (+5,39 %) |
+| v1, 1000 réplicas | 499,90 t | 996/1000 | metas medias: 3/3 · frecuencia/Wilson ≥ 0,95: 4/2 |
+| v2, 1000 réplicas (selección) | 498,68 t | 947/1000 | los tres criterios: 3/3 |
+| v2, 1000 réplicas nuevas (validación) | 498,25 t | 931/1000 | se confirma 3/3 |
+
+No se ajustaron metas, tolerancias ni semillas para cambiar estos resultados. La conclusión defendible no es "4/2 es mejor" ni "3/3 es mejor", sino que **4/2 está en el límite de capacidad del frente B** y la recomendación depende de cuánto riesgo de incumplir se acepte. Una frecuencia alta de cumplimiento puede coexistir con una media ligeramente bajo la meta: unas pocas guardias con 475 t bajan el promedio.
+
+## Resultado principal (modelo v2, rampa de 2 min, 30 réplicas)
+
+| Asignación A/B | t/guardia media | IC 95 % de la media | Media A / B (t) | Cumple metas medias |
+|---|---:|---:|---:|:--:|
+| 2/4 | 1694,17 | 1688,9 – 1699,5 | 702,5 / 991,7 | Sí |
+| **3/3 (seleccionada y base)** | **1792,50** | 1786,9 – 1798,1 | 1045,0 / 747,5 | Sí |
+| 4/2 | 1870,00 | 1863,3 – 1876,7 | 1372,5 / 497,5 | No |
+| 5/1 | 1910,00 | 1905,3 – 1914,7 | 1660,0 / 250,0 | No |
+
+La tabla completa (siete asignaciones), los tiempos por actividad y la utilización de recursos están en el panel y en `results/summary.json`. Costo supuesto de la base: S/ 3,766 por t (S/ 6750 por guardia ÷ producción media).
 
 ## Ejecutar
 
-Requiere Python 3.10 o superior. No necesita paquetes externos.
+Requiere Python 3.10 o superior; no necesita instalar paquetes. Desde la carpeta que contiene `minefleet.py`:
 
 ```bash
-python minefleet.py
-python -m unittest discover -s tests -v
+python minefleet.py                                                       # resultado principal → results/
+python minefleet.py --scenario data/scenario_rampa_lenta.json --out results_rampa_lenta
+python sensitivity.py                                                     # rampa de 1 a 5 min → results_sensitivity/
+python reliability.py                                                     # 1000 guardias por asignación → results_reliability/
+python policy.py                                                          # criterios de selección → results_policy/
+python validation.py                                                      # semillas nuevas → results_validation/
+python -m unittest discover -s tests -v                                   # 32 pruebas
 ```
 
-Abrir `results/dashboard.html` en el navegador. Para servirlo localmente:
+Otro umbral: `python policy.py --threshold 0.995 --out results_policy_995`. En Windows, para abrir un panel: `start results\dashboard.html`. La cadena completa tarda alrededor de medio minuto.
+
+## Modelo
+
+**Recursos:** un punto de carguío por frente (capacidad 1), una descarga compartida (capacidad 1) y un tramo de rampa compartido (capacidad 1, ambos sentidos). Colas FIFO por hora de llegada; empates por orden de inserción. El carguío es un recurso de servicio: **no hay un LHD modelado como equipo móvil** ni una red geométrica de labores.
+
+**Ciclo (v2, `"ramp_side": "dump"`):** carguío → viaje cargado fuera de rampa → rampa → descarga → rampa → viaje vacío fuera de rampa → carguío. La rampa está en el tramo común junto a la descarga y ocupa la misma posición en ambos sentidos. Con `"ramp_side": "load"` queda junto a los frentes.
+
+**Tiempos:** `loaded_min` y `empty_min` son el tiempo total de viaje e **incluyen** el cruce de rampa; el modelo resta `ramp_crossing_min` para obtener el tramo fuera de rampa. El cruce es fijo; carguío, descarga y viaje fuera de rampa siguen una triangular simétrica de ±`variability` (15 %).
+
+**Guardia:** 450 min simulados (7,5 h, no una jornada completa). Todos los volquetes empiezan vacíos en su frente en t = 0, de modo que la guardia arranca con colas en el carguío (no hay período de calentamiento). Solo cuentan las descargas que terminan hasta el minuto 450; los ciclos incompletos no suman. Las reservas de recursos que pasan del cierre no afectan los indicadores: la producción, la espera y la utilización se recortan al horizonte.
+
+**Números aleatorios:** cada réplica usa una semilla (`seed`, `seed + 1`, …). En v2 cada puesto (ruta, posición) tiene su propio flujo, de modo que el primer volquete de A recibe los mismos números en 3/3 y en 4/2. Esto mejora la comparación pareada, pero las alternativas **no** son muestras independientes entre sí.
+
+**Selección:** se enumeran todas las asignaciones estáticas (0/6 … 6/0) y se elige la de mayor producción media entre las que cumplen las metas medias de ambos frentes. No es optimización dinámica ni aprendizaje automático.
+
+**Costo:** flota × horas de guardia × costo por hora de volquete (6 × 7,5 × 150 = S/ 6750). El costo por tonelada es ese costo fijo dividido entre la producción media (razón de medias, no promedio de costos unitarios). No incluye combustible, personal, mantenimiento, carguío, infraestructura ni capital, y no permite estimar ahorros reales.
+
+## Interpretación del experimento de rampa
+
+Al aumentar `ramp_crossing_min` sin cambiar `loaded_min` ni `empty_min`, el tiempo nominal total de viaje sin colas **no cambia**: aumenta la ocupación del recurso compartido y disminuye el tramo fuera de rampa. Cambian las esperas y también la variabilidad, porque la rampa es fija y el resto aleatorio. No es "el viaje tarda un minuto más".
+
+| Ocupación por cruce | Base 3/3 (t/guardia) | Selección por metas medias | Producción seleccionada |
+|---|---:|---|---:|
+| 1 min | 1825,83 | 4/2 | 1917,50 |
+| 2 min | 1792,50 | 3/3 | 1792,50 |
+| 3 min | 1655,00 | 3/3 | 1655,00 |
+| 4 min | 1359,17 | 3/3 | 1359,17 |
+| 5 min | 1100,83 | ninguna cumple ambas metas medias | — |
+
+30 réplicas por asignación (modelo v2). Con rampa de 3 min, 4/2 deja al frente B en 462,5 t medias.
+
+## Cumplimiento por guardia, criterios y validación
+
+`reliability.py` simula 1000 guardias por asignación (semillas 2026–3025) y cuenta directamente las que cumplen **ambas** metas a la vez; no multiplica frecuencias marginales, porque los frentes comparten recursos.
+
+| Rampa | A/B | Media (t) | Media B (t) | Ambas metas | Wilson 95 % |
+|---|---|---:|---:|---:|---:|
+| 2 min | 3/3 | 1795,62 | 746,77 | 1000/1000 | 99,6 – 100,0 % |
+| 2 min | 4/2 | 1872,20 | 498,68 | 947/1000 | 93,1 – 95,9 % |
+| 3 min | 3/3 | 1663,00 | 704,00 | 1000/1000 | 99,6 – 100,0 % |
+| 3 min | 4/2 | 1690,45 | 463,52 | 0/1000 | 0,0 – 0,4 % |
+
+`policy.py` aplica tres criterios alternativos sobre ese lote (no vuelve a simular):
+
+- **mean**: la media de cada frente alcanza su meta.
+- **frequency**: la frecuencia observada de guardias con ambas metas es ≥ umbral (0,95 por defecto).
+- **wilson**: el límite inferior del intervalo de Wilson del 95 % de esa frecuencia es ≥ umbral.
+
+Frecuencia y Wilson **sustituyen** el filtro de metas medias; no lo añaden. En v2, con umbral 0,95, los tres eligen 3/3 en ambas rampas. 4/2 no entra por frecuencia porque 947/1000 = 0,947 < 0,95, otra decisión en el límite.
+
+`validation.py` simula un **lote nuevo** de 1000 guardias (semillas 1 000 000–1 000 999, sin solapamiento; el programa rechaza rangos que se crucen). El lote de selección solo sirve para elegir y el de validación solo para evaluar lo elegido. Resultado v2: 3/3 se confirma en ambas rampas con los tres criterios (1000/1000 guardias con ambas metas). El panel incluye la distribución de toneladas cerca de la meta: con 4/2 y rampa de 2 min, 94,6 % de las guardias del frente B quedan **exactamente** en 500 t y 5,3 % por debajo.
+
+Limitaciones: el 95 % del umbral y el 95 % del intervalo son conceptos distintos. Los intervalos son individuales, sin corrección por comparaciones múltiples. Los porcentajes son estimaciones dentro del modelo, no probabilidades validadas en una mina. La validación usa el mismo modelo; no sustituye datos operacionales.
+
+## Incorporar tiempos medidos (preparado, sin datos)
+
+`data/tiempos_medidos_plantilla.csv` define el formato y está vacía a propósito. Columnas: `fecha, guardia, equipo, ruta, etapa, duracion_min, fuente, observaciones`. Las etapas válidas son `load`, `travel_loaded_total`, `dump`, `travel_empty_total` y `ramp_crossing`; los viajes totales incluyen la rampa y las esperas se excluyen.
 
 ```bash
-python -m http.server 8000 --directory results
+python measured.py --input data/tiempos_medidos.csv                       # valida y resume (n, media, p10, p50, p90)
+python measured.py --input data/tiempos_medidos.csv --write-scenario data/scenario_calibrado.json
 ```
 
-Visitar http://localhost:8000/dashboard.html. Este panel presenta resultados; modificar `data/scenario.json` y ejecutar nuevamente para comparar otro escenario.
+El escenario calibrado solo se genera si cada tiempo tiene al menos 30 observaciones (`--min-n`). Reemplaza los tiempos nominales por las medias medidas y deja registro en `"calibration"`. No ajusta `variability` ni la forma de la distribución. Usar solo registros autorizados.
 
-```bash
-python minefleet.py --scenario data/scenario.json --out results
-```
+## Trazabilidad de resultados históricos
 
-## Modelo de ingeniería
+| Resultado | Cómo reproducirlo |
+|---|---|
+| Release v1.0.0 (4/2, 1890,00 t, +5,39 %) | `python minefleet.py --scenario data/scenario_v1_historico.json --out <carpeta>` |
+| Rampa lenta v1 (3/3, 1722,50 t) | `python minefleet.py --scenario data/scenario_v1_historico_rampa_lenta.json --out <carpeta>` |
+| Cumplimiento, criterios y validación v1 | carpeta [`results_v1_historico/`](results_v1_historico/) |
 
-Cada volquete sigue: carguío → cruce de rampa cargado → resto del viaje cargado → descarga → cruce de rampa vacío → resto del retorno → carguío.
-
-- Un recurso de carguío por frente, capacidad 1.
-- Una descarga compartida, capacidad 1.
-- Un tramo de rampa compartido, capacidad 1 en ambos sentidos.
-- Colas FIFO según llegada; empate resuelto por orden de inserción del evento.
-- Tiempos de carguío, descarga y viajes restantes con distribución triangular ±15% del valor nominal.
-- Cruce fijo de 2 min, incluido dentro de los tiempos nominales de viaje; no se agrega de nuevo.
-- Las esperas se generan por contención de recursos; no se añade una espera fija de 5 o 7 min.
-- Inicio: todos los equipos vacíos y disponibles en su frente a tiempo cero.
-- Solo cuentan cargas cuya descarga termina antes o exactamente al minuto 450. No se exige terminar el retorno para contabilizar mineral entregado.
-
-Esta convención difiere del ejercicio inicial basado en ciclos completos. Los seis equipos se mantienen asignados durante toda la guardia; no hay despacho dinámico.
-
-## Optimización y costos
-
-Se enumeran n_A=0,…,6 y n_B=6−n_A. Se maximiza la producción media simulada, sujeta a metas medias por frente y rutas habilitadas. Cada opción usa las mismas semillas de réplica y flujos aleatorios independientes por equipo; la reasignación cambia la secuencia de eventos, por lo que esto no implica emparejamiento perfecto de ciclos entre opciones.
-
-Costo de guardia = número de equipos × horas disponibles × costo por hora. El costo por tonelada publicado es costo fijo de guardia dividido entre producción media. Se supone S/150 por equipo-hora y se pagan los seis equipos durante las 7.5 h. Es un supuesto comparativo, no una estimación integral: no incluye desglose de combustible, mantenimiento, cargadores ni infraestructura.
+`"model_version": 1` reproduce exactamente el modelo anterior, y una prueba automática lo verifica. Los archivos originales de la release siguen en la [release v1.0.0](https://github.com/martinklinger05-dev/minefleet-underground/releases).
 
 ## Archivos
 
-- `minefleet.py`: simulación, evaluación, búsqueda y exportación.
-- `data/scenario.json`: supuestos editables, unidades en minutos, toneladas y soles.
-- `results/summary.json`: estadísticas y todas las alternativas.
-- `results/events.csv`: trazabilidad de una réplica de la opción seleccionada. Puede incluir servicios programados más allá del cierre; esas descargas no cuentan.
-- `results/dashboard.html`: panel autónomo.
-- `tests/test_simulation.py`: ocho pruebas de invariantes y cálculo manual.
-- `.github/workflows/tests.yml`: configuración para pruebas automáticas en GitHub.
+| Archivo | Contenido |
+|---|---|
+| `minefleet.py` | Simulación, validación de entradas, evaluación, selección y panel principal |
+| `sensitivity.py` | Sensibilidad a la ocupación de rampa |
+| `reliability.py` | Cumplimiento por guardia e intervalo de Wilson |
+| `policy.py` | Criterios de selección: metas medias, frecuencia y Wilson |
+| `validation.py` | Validación con semillas nuevas y análisis cerca de la meta |
+| `measured.py` | Formato e ingreso de tiempos medidos |
+| `data/` | Escenarios v2, copias v1 históricas y plantilla de tiempos |
+| `results*/` | Resultados y paneles generados (JSON, CSV, HTML) |
+| `tests/` | 32 pruebas automáticas |
+| `docs/AUDITORIA.md` | Defectos encontrados, evidencia y correcciones |
 
 ## Verificación y límites
 
-Pruebas locales: 8/8 aprobadas. Se verifica exclusión temporal de recursos, cantidad entregada, corte de guardia, reproducibilidad, restricciones, datos inválidos, caso sin solución y selección exhaustiva. Caso manual de un solo volquete: primera descarga en 21 min; siguientes cada 30 min; 15 viajes entregados = 375 t en 450 min.
+32 pruebas automáticas (8 originales adaptadas + 24 nuevas). Verifican exclusión de recursos, rampa en la misma posición en ambos sentidos, cobertura del tiempo de cada volquete, reproducción exacta de v1, validación de entradas, exportación con producción cero, escape de HTML, criterios, separación de semillas y formato de datos medidos. Las pruebas comprueban el código; no validan el modelo frente a una mina real.
 
-Pendientes para una aplicación real: calibración con registros autorizados, validación independiente, distribución empírica de tiempos, fallas, cambios de guardia, geometría y pendientes, múltiples cruces, prioridades de tránsito, restricciones de ventilación, heterogeneidad de equipos y costos detallados. La rampa es un recurso abstracto ubicado antes del resto del viaje en ambos sentidos; no representa la geometría de una ruta específica. No equivale a una evaluación de seguridad.
+Pendiente para una aplicación real: calibración con registros autorizados, ajuste de distribuciones, LHD y equipos heterogéneos, fallas y mantenimiento, cambio de guardia, geometría, pendientes y prioridades de tránsito, ventilación y costos detallados. No es una evaluación de seguridad.
 
-La selección usa las mismas réplicas para elegir y reportar resultados; puede presentar sesgo de selección. Para tesis, separar réplicas de evaluación fuera de muestra, analizar incertidumbre y sensibilidad y validar contra una operación real. Los 30 escenarios por opción son una demostración, no un tamaño muestral científicamente justificado.
+## Explicación breve para una entrevista
 
-## Publicar en GitHub
-
-Crear un repositorio llamado `minefleet-underground`, extraer este paquete y subir su contenido (README y minefleet.py deben quedar en la raíz). No subir datos empresariales confidenciales.
-
-Descripción sugerida: "Underground mining haulage simulator in Python: discrete-event queues, static fleet allocation, reproducible experiments and operating cost comparison."
-
-Este paquete no está publicado todavía. La automatización incluida se ejecutará cuando se suba a GitHub; únicamente se han ejecutado las pruebas locales en el entorno disponible.
-
-## Explicación para una entrevista
-
-«El proyecto representa la competencia de los volquetes por carguío, rampa y descarga con eventos discretos. Evalúa cada distribución y selecciona la de mayor producción media que cumple las metas por frente. Con datos simulados, pasar de 3/3 a 4/2 incrementó 5.39% la producción media. El resultado depende de los supuestos y requiere calibración antes de aplicarlo en campo».
-
-## Sensibilidad al tiempo de cruce de rampa
-
-Se comparó el escenario original con otro en el que `ramp_crossing_min` aumenta de 2 a 3 minutos. Los demás parámetros se mantienen iguales: seis volquetes, 30 réplicas por asignación, semilla 2026 y metas medias de 500 t por frente.
-
-| Indicador | Rampa de 2 min | Rampa de 3 min |
-|---|---:|---:|
-| Producción media con A=3, B=3 (t/guardia) | 1793,33 | 1722,50 |
-| Producción media con A=4, B=2 (t/guardia) | 1890,00 | 1780,83 |
-| Asignación seleccionada A/B | 4/2 | 3/3 |
-
-Con la asignación fija 3/3, la producción media disminuye un 3,95 %. En el escenario de rampa lenta, la asignación 4/2 produce más toneladas totales que 3/3, pero el frente B alcanza solo 485 t medias y no cumple su meta de 500 t. Por ello, el modelo selecciona 3/3.
-
-La comparación muestra que la selección de flota depende tanto de la producción total como de las metas de cada frente. Son resultados simulados; el cumplimiento de las metas medias no garantiza su cumplimiento en cada guardia.
-
-### Reproducir el escenario
-
-```bash
-python minefleet.py --scenario data/scenario_rampa_lenta.json --out results_rampa_lenta
-```
-
-[Ver panel de rampa lenta](https://martinklinger05-dev.github.io/minefleet-underground/results_rampa_lenta/dashboard.html)
-
-[Consultar resultados completos](results_rampa_lenta/summary.json)
-
-## Comparación automática de ocupación de rampa
-
-Se evaluaron cinco tiempos de ocupación de rampa, de 1 a 5 minutos, con 30 réplicas por distribución y semilla 2026.
-
-![Producción media según ocupación de rampa](results_sensitivity/production.svg)
-
-| Ocupación por cruce | Selección A/B | Producción media (t/guardia) |
-|---|---|---:|
-| 1 min | 4/2 | 1912,50 |
-| 2 min | 4/2 | 1890,00 |
-| 3 min | 3/3 | 1722,50 |
-| 4 min | 3/3 | 1396,67 |
-| 5 min | Ninguna cumple ambas metas medias | — |
-
-El tiempo total de viaje permanece fijo: aumenta la ocupación del recurso compartido y cambian las esperas. Los puntos verdes representan la distribución seleccionada entre las que cumplen las metas medias de ambos frentes.
-
-Todos los datos son simulados. Cumplir las metas medias no garantiza cumplirlas en cada guardia.
-
-### Reproducir el análisis
-
-```bash
-python sensitivity.py
-```
-
-[Ver panel de sensibilidad](https://martinklinger05-dev.github.io/minefleet-underground/results_sensitivity/dashboard.html)
-
-## Cumplimiento de metas por guardia
-
-Se simularon 1000 guardias por distribución y escenario, con metas de 500 t por frente y semilla inicial 2026.
-
-| Rampa | Distribución A/B | Producción media (t/guardia) | Guardias con ambas metas |
-|---|---|---:|---:|
-| 2 min | 3/3 | 1796,10 | 1000/1000 |
-| 2 min | 4/2 | 1889,65 | 996/1000 |
-| 3 min | 3/3 | 1719,40 | 1000/1000 |
-| 3 min | 4/2 | 1781,17 | 462/1000 |
-
-Con rampa de 2 minutos, la distribución 4/2 cumple ambas metas en el 99,6 % de las guardias simuladas, pero el frente B promedia 499,90 t y queda ligeramente por debajo de su meta media. Esto muestra que la selección anterior, basada en 30 réplicas, estaba cerca del límite y es sensible al muestreo.
-
-Con rampa de 3 minutos, el cumplimiento conjunto de 4/2 baja al 46,2 %. La distribución 3/3 cumple ambas metas en las 1000 guardias simuladas de cada escenario.
-
-El panel incluye intervalos Wilson del 95 % para las frecuencias conjuntas. Un resultado observado de 1000/1000 no garantiza cumplimiento futuro. Los intervalos cuantifican incertidumbre de muestreo bajo el modelo, no su validez operacional.
-
-### Reproducir el análisis
-
-```bash
-python reliability.py
-```
-
-[Ver panel de cumplimiento por guardia](https://martinklinger05-dev.github.io/minefleet-underground/results_reliability/dashboard.html)
+«Modelé con eventos discretos la competencia de los volquetes por carguío, rampa y descarga, y evalué todas las asignaciones estáticas con simulación. Al auditar el modelo encontré que la rampa estaba en posiciones distintas a la ida y a la vuelta. Al corregirlo, la asignación que antes parecía mejor dejó de cumplir la meta del frente B: con dos volquetes ese frente está en su techo de 20 viajes, justo la meta. Separé los lotes de selección y de validación para comprobar que la elección no dependía de las semillas. Son datos simulados; el siguiente paso es calibrar con tiempos medidos.»
